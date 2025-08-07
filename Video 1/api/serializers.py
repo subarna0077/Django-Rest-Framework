@@ -33,7 +33,7 @@ class OrderSerializer(serializers.ModelSerializer):
         return sum(order_item.item_subtotal for order_item in order_items)
     class Meta:
         model = Order
-        fields = ['order_id', 'status', 'created_at', 'items', 'total_price']
+        fields = ['order_id', 'user', 'status', 'created_at', 'items', 'total_price']
 
 
 class ProductInfoSerializer(serializers.Serializer):
