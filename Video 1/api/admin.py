@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product,Order, OrderItem
+from .models import Product,Order, OrderItem, User
 
 # Register your models here.
 
@@ -11,4 +11,6 @@ class OrderAdmin(admin.ModelAdmin):
         OrderItemInline
     ]
 
-admin.site.register(Order, OrderAdmin)
+admin.site.register(Order)
+admin.site.register(OrderItem)
+admin.site.register(User)

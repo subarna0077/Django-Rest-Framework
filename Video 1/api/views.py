@@ -5,14 +5,25 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.db.models import Max
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 from rest_framework.views import APIView
+from .filters import ProductFilter
 
 
 class ProductListAPIView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+class ProductListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filterset_class = ProductFilter
+
+    def get_permissions(self):
+        self.permission_classes = [AllowAny]
+        if self.request.method == 'POST':
+            self.permission_classes = [IsAdminUser]
+        return super().get_permissions()
 
 # @api_view(['GET'])
 # def product_list(request):
@@ -21,10 +32,17 @@ class ProductListAPIView(generics.ListAPIView):
 #     return Response(serializer.data, status=200)
 
 
-class ProductDetailAPIView(generics.RetrieveAPIView):
+class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
      queryset = Product.objects.all()
      serializer_class = ProductSerializer
      lookup_field = 'pk'
+
+     def get_permissions(self):
+         self.permission_classes = [AllowAny]
+
+         if self.request.method in ['PATCH', 'PUT', 'DELETE']:
+             self.permission_classes = [IsAdminUser]
+         return super().get_permissions()
 
 # @api_view(['GET'])
 # def product_detail(request, pk):
@@ -48,7 +66,7 @@ class OrderListAPIView(generics.ListAPIView):
 class UserOrderListAPIView(generics.ListAPIView):
     queryset = Order.objects.prefetch_related('items').all()
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser]
 
     def get_queryset(self):
         qs = super().get_queryset()

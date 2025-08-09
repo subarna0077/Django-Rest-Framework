@@ -1,0 +1,59 @@
+GET http://localhost:8000/products/ HTTP/1.1
+
+###
+
+GET http://localhost:8000/products/1 HTTP/1.1
+
+
+
+###
+PUT http://localhost:8000/products/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0NzMzMzYxLCJpYXQiOjE3NTQ3MzMwNjEsImp0aSI6IjNmZTE3NTliYWE5ODRmNjQ5YzJiNmM3MDlhNzJkN2Y0IiwidXNlcl9pZCI6IjEifQ.CyBS-06p07k1-fG0BuhBMy2x8yKh8Fjyi7cekTZ3rv4
+
+{
+    "name" : "PS Fiveee",
+    "price": 300.00,
+    "stock": 14,
+    "description": "Amazing Product"    
+}
+
+###
+DELETE http://localhost:8000/products/2 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0NzMzMzYxLCJpYXQiOjE3NTQ3MzMwNjEsImp0aSI6IjNmZTE3NTliYWE5ODRmNjQ5YzJiNmM3MDlhNzJkN2Y0IiwidXNlcl9pZCI6IjEifQ.CyBS-06p07k1-fG0BuhBMy2x8yKh8Fjyi7cekTZ3rv4
+
+###
+
+POST http://localhost:8000/products/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0NzMwODk3LCJpYXQiOjE3NTQ3MzA1OTcsImp0aSI6ImU3NzI3OGQ2NDI4OTRkMjk5OGRlYTdiMzM3MjJhZjY5IiwidXNlcl9pZCI6IjEifQ.YHgvR_rhIv6el-TCy4KLEPOzxsW9yfkg_qpX7WqiClU
+
+
+{
+    "name" : "PS Fiveee",
+    "price": 300.00,
+    "stock": 14,
+    "description": "Amazing Product"
+}
+
+###
+
+POST http://localhost:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "test"
+}
+
+### 
+GET http://localhost:8000/user-orders/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0NzMxMTk1LCJpYXQiOjE3NTQ3MzA4OTUsImp0aSI6IjY1OTE0NmE5MmNlYzQ5NGI4MmRhZGEzMjQzNTVjZDA0IiwidXNlcl9pZCI6IjEifQ.zH36QXS6NL44TUGL_MkfruCmHOyXII-In1oBep1k17Y
+
+###
+POST http://localhost:8000/api/token/refresh/ HTTP/1.1
+Content-Type: application/json
+
+{
+   "refresh" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NDgxODE1OCwiaWF0IjoxNzU0NzMxNzU4LCJqdGkiOiIyZmY5ODI0MDBjMTM0OWZiODdiMzliYTNmZjY2MmQ0MiIsInVzZXJfaWQiOiIxIn0.s9_DFgLLK0fkGinRif7tX2eTuF7jWOj3ELb36QoMi8o"
+}
